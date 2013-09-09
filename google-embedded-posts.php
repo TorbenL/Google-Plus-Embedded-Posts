@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Google+ Embedded Posts
-Plugin URI: http://www.torbenleuschner.de/blog/865/facebook-posts-wordpress-plugin/
+Plugin URI: http://www.torbenleuschner.de/blog/886/google-beitrage-per-wordpress-plugin-einbetten/
 Description: Add Google+ posts to your Wordpress blog. You can embed a post via shortcode [gp-post href=""] in your articles or pages.
 Author: Torben Leuschner
 Author URI: http://www.torbenleuschner.de
@@ -22,8 +22,18 @@ function gp_embedded_post($a)
         return '<div style="color:red;">Google+ Post: Shortcode parameter "href" must contain a valid Google URL</div>';
 
     return '
+	<script>window.___gcfg = {lang: \''.gp_embedded_get_language().'\'};</script>
     <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
     <div class="g-post" data-href="'.$a['href'].'"></div>';
+}
+
+
+function gp_embedded_get_language()
+{
+    $lang = get_bloginfo('language');
+    $codes = explode('-', $lang);
+
+    return $codes[0];
 }
 
 

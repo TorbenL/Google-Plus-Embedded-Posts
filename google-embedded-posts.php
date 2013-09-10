@@ -22,9 +22,9 @@ function gp_embedded_post($a)
         return '<div style="color:red;">Google+ Post: Shortcode parameter "href" must contain a valid Google URL</div>';
 
     return '
-	<script>window.___gcfg = {lang: \''.gp_embedded_get_language().'\'};</script>
+	<script>window.___gcfg = {lang: \''.esc_js( gp_embedded_get_language() ).'\'};</script>
     <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-    <div class="g-post" data-href="'.$a['href'].'"></div>';
+    <div class="g-post" data-href="'.esc_attr( $a['href'] ).'"></div>';
 }
 
 
